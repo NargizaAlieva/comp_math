@@ -1,34 +1,42 @@
-program Task2
-    implicit none
-    real(8) :: epsilon64, machine_eps64
-    integer :: n64
-
-    print *, "--------------------------------------------------------"
-    print *, "2. Expand the 1st task from float 32 to float 64"
+program From32To64
+    !---------------------------------------------------------
+    !Task2 Expand the 1st task from float16 to float64
     
-    epsilon64 = 1.0_8
-    n64 = 0
+    real(8) epsilon, mach_eps
+    integer n
     
-    do while (1.0_8 + epsilon64 > 1.0_8)
-        machine_eps64 = epsilon64;
-        n64 = n64 + 1
-        epsilon64 = epsilon64 / 10.0_8
-    end do
-
-    print *, "Machine Epsilon (devide by 10) for float64: ", machine_eps64
-    print *, "n: ", n64
+    write(*, *) '----------------------------------------'
+    epsilon = 1
+    n = 0
     
-    
-    
-    epsilon64 = 1.0_8
-    n64 = 0
-
-    do while (1.0_8 + epsilon64 > 1.0_8)
-        machine_eps64 = epsilon64;
-        n64 = n64 + 1
-        epsilon64 = epsilon64 / 2.0_8
+    do 
+        epsilon = epsilon / 10
+        n = n + 1
+        
+        if (epsilon + 1 <=  1) then
+            exit
+        end if
+        
+        mach_eps = epsilon
     end do
     
-    print *, "Machine Epsilon (devide by 2) for float64: ", machine_eps64
-    print *, "n: ", n64
-end program Task2
+    write(*, *) 'Mathine epsilon float 64 (devide by 10): ', mach_eps
+    write(*, *) 'n: ', n
+    
+    epsilon = 1
+    n = 0
+    
+    do 
+        epsilon = epsilon / 2
+        n = n + 1
+        
+        if (epsilon + 1 <=  1) then
+            exit
+        end if
+        
+        mach_eps = epsilon
+    end do
+    
+    write(*, *) 'Mathine epsilon float 64 (devide by 2): ', mach_eps
+    write(*, *) 'n: ', n
+end program From32To64

@@ -1,40 +1,40 @@
-program Task4
-    implicit none
-    real :: z, machine_zero
-    integer :: n32
+program MachineZero
+    !---------------------------------------------------------
+    !Task4 Write a program about Machine Zero (2 * Z > Z)
     
-    ! 4--------------------------------------------------------------------------
-    ! Machine Zero is the smallest positive number Z such that 2*Z>Z when 
-    ! working with floating-point arithmetic. This concept is crucial for 
-    ! understanding floating-point precision and the limits of numerical representations.
-
+    real zero, mach_zero
+    integer n
     
-    print *, "--------------------------------------------------------"
-    print *, "4. Write a program about Machine Zero (2 * Z > Z)"
-
-    z = 1.0
-    n32 = 0
-
-    do while (2.0 * z > z)
-        n32 = n32 + 1
-        machine_zero = z
-        z = z / 10.0
+    write(*, *) '----------------------------------------'
+    zero = 1
+    n = 0
+    
+    do 
+        mach_zero = zero
+        zero = zero / 10
+        n = n + 1
+        
+        if (2 * zero <= zero) then
+            exit
+        end if
     end do
-
-    print *, "Machine Zero (devide by 10): ", machine_zero    
-    print *, "n: ", n32
     
+    write(*, *) 'Mathine Zero (devide by 10): ', mach_zero
+    write(*, *) 'n: ', n
     
+    zero = 1
+    n = 0
     
-    z = 1.0
-    n32 = 0
-
-    do while (2.0 * z > z)
-        n32 = n32 + 1
-        machine_zero = z
-        z = z / 2.0
+    do 
+        mach_zero = zero
+        zero = zero / 2
+        n = n + 1
+        
+        if (2 * zero <= zero) then
+            exit
+        end if
     end do
-
-    print *, "Machine Zero (devide by 2): ", machine_zero
-    print *, "n: ", n32
-end program Task4
+    
+    write(*, *) 'Mathine Zero (devide by 2): ', mach_zero
+    write(*, *) 'n: ', n
+end program MachineZero
